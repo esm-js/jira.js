@@ -1,12 +1,11 @@
 {
-  "name": "jira.js",
+  "name": "@esm-js/jira.js",
   "version": "5.1.0",
   "description": "A comprehensive JavaScript/TypeScript library designed for both Node.JS and browsers, facilitating seamless interaction with the Atlassian Jira API.",
   "repository": "https://github.com/MrRefactoring/jira.js.git",
   "homepage": "https://mrrefactoring.github.io/jira.js",
   "author": "Vladislav Tupikin <vladislav.tupikin@icloud.com>",
   "license": "MIT",
-  "type": "module",
   "keywords": [
     "jira",
     "javascript",
@@ -37,15 +36,18 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.esm.js",
-      "require": "./dist/index.cjs.js"
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
     }
   },
   "scripts": {
-    "build": "pnpm run build:src && pnpm run build:tests",
-    "build:src": "rollup -c rollup.config.ts --configPlugin typescript",
-    "build:tests": "tsc --project tests/tsconfig.json",
+    "build": "pnpm run tsup",
     "prettier": "prettier --write src",
     "lint": "pnpm run lint:tests && pnpm run lint:src:agile && pnpm run lint:src:clients && pnpm run lint:src:services && pnpm run lint:src:version2 && pnpm run lint:src:version3 && pnpm run lint:src:files",
     "lint:tests": "pnpm run lint:base tests",
@@ -111,9 +113,11 @@
     "rollup": "^4.40.1",
     "sinon": "^20.0.0",
     "tslib": "^2.8.1",
+    "tsup": "^8.4.0",
     "typedoc": "^0.28.3",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.31.1",
     "vitest": "^3.1.2"
-  }
+  },
+  "packageManager": "pnpm@10.10.0+sha512.d615db246fe70f25dcfea6d8d73dee782ce23e2245e3c4f6f888249fb568149318637dca73c2c5c8ef2a4ca0d5657fb9567188bfab47f566d1ee6ce987815c39"
 }
